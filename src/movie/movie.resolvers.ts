@@ -1,7 +1,7 @@
 import { ParseIntPipe, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
-import { Movie } from '../graphql.schema';
+import { Movie, ObjectID } from '../graphql.schema';
 import { MovieGuard } from './movie.guard';
 import { MovieService } from './movie.service';
 import { CreateMovieDto, MovieDto } from './movie.entity';
@@ -20,10 +20,11 @@ export class MovieResolvers {
 
     @Query('movie')
     async findOneById(
-        @Args('id', ParseIntPipe)
-        id: number,
+        /* @Args('id', ParseIntPipe) */
+        @Args('id')
+        id: string,
     ): Promise<Movie> {
-        const movie = await this.movieService.findOneById(id);
+        const movie = await this.movieService.find(id);
         return movie;
 
     }

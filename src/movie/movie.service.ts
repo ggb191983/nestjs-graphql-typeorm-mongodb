@@ -3,9 +3,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Movie } from './movie.entity';
 import { CreateMovieInput } from '../graphql.schema';
+import { IService } from 'common/services.interface';
 
 @Injectable()
-export class MovieService {
+export class MovieService implements IService<Movie> {
+
     constructor(
         @InjectRepository(Movie)
         private readonly movieRepository: Repository<Movie>) { }
@@ -19,9 +21,12 @@ export class MovieService {
         return await this.movieRepository.find();
     }
 
-    async findOneById(id: number): Promise<Movie> {
-        const result = await this.movieRepository.find({ where: { id } });
-        return result[0];
+    async update(dto: Movie): Promise<Movie> {
+        throw new Error('Method not implemented.');
+    }
+
+    async find(id: string): Promise<Movie> {
+        return await this.movieRepository.findOne({ where: { id } });
     }
 
     async findByName(name: string): Promise<Movie> {
