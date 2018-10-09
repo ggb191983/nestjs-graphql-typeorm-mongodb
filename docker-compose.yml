@@ -1,0 +1,13 @@
+version: '2'
+services:
+  db:
+    image: aashreys/mongo-auth:latest
+    environment:
+      - AUTH=yes
+      - MONGODB_ADMIN_USER=admin
+      - MONGODB_ADMIN_PASS=admin
+      - MONGODB_APPLICATION_DATABASE=mongodb
+      - MONGODB_APPLICATION_USER=user
+      - MONGODB_APPLICATION_PASS=password
+    ports:
+      - "27017:27017"
