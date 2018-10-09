@@ -1,0 +1,30 @@
+scalar Date
+scalar ObjectID
+
+type Query {
+  getMovies: [Movie]  
+  movie(_id: ObjectID!): Movie 
+}
+
+type Mutation {
+  createMovie(createMovieInput: CreateMovieInput): Movie
+}
+
+type Subscription {
+  movieCreated: Movie
+}
+
+type Movie {
+  _id: ObjectID!,
+  title: String!
+  age: Int 
+  createdAt: Date
+  updatedAt: Date
+}
+
+input CreateMovieInput {
+  title: String!
+  age: Int
+  createdAt: Date
+  updatedAt: Date
+}
