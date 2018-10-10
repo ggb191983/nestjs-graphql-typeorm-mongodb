@@ -1,6 +1,5 @@
 
 
-
 export interface IService<T> {
     findAll(): Promise<Array<T>>;
     create(dto: T): Promise<T>;

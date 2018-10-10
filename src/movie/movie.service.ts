@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseInterceptors } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, ObjectID } from 'typeorm';
 import { Movie } from './movie.entity';
 import { CreateMovieInput } from '../graphql.schema';
 import { IService } from 'common/services.interface';
@@ -26,7 +26,7 @@ export class MovieService implements IService<Movie> {
     }
 
     async find(id: string): Promise<Movie> {
-        return await this.movieRepository.findOne({ where: { id } });
+        return await this.movieRepository.findOne(id);
     }
 
     async findByName(name: string): Promise<Movie> {
