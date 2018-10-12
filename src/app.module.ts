@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MovieModule } from './movie/movie.module';
 import { CommonModule } from './common/common.module';
@@ -25,8 +23,8 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
       type: 'mongodb',
       host: '192.168.99.100',
       port: 27017,
-      username: 'ggomez',
-      password: 'D-1n4m4rc4',
+      username: 'user',
+      password: 'password',
       database: 'mongo',
       logging: 'all',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
@@ -35,7 +33,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
     MovieModule,
     CommonModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, Logger, { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor }],
+  controllers: [],
+  providers: [Logger, { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor }],
 })
 export class AppModule { }

@@ -75,6 +75,8 @@ export class Logger {
                 type: 'rotating-file',
                 path: `./log/${'my-graphql'}-app.log-${Date.now()}`,
                 period: '1d',   // daily rotation
+                threshold: '10m',
+                gzip: true,
                 totalFiles: 3,   // keep 3 back copies
             }),
         };

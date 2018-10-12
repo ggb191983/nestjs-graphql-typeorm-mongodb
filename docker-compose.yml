@@ -6,7 +6,7 @@ services:
       - AUTH=yes
       - MONGODB_ADMIN_USER=admin
       - MONGODB_ADMIN_PASS=admin
-      - MONGODB_APPLICATION_DATABASE=mongodb
+      - MONGODB_APPLICATION_DATABASE=mongo
       - MONGODB_APPLICATION_USER=user
       - MONGODB_APPLICATION_PASS=password
     ports:
