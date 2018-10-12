@@ -4,7 +4,6 @@ import { MovieModule } from './movie/movie.module';
 import { CommonModule } from './common/common.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { Logger } from 'common/log/logger.service';
 import { LoggingInterceptor } from 'common/interceptors/LoggingInterceptor';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 
@@ -34,6 +33,6 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
     CommonModule,
   ],
   controllers: [],
-  providers: [Logger, { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor }],
+  providers: [{ provide: APP_INTERCEPTOR, useClass: LoggingInterceptor }],
 })
 export class AppModule { }

@@ -5,7 +5,6 @@ import { Movie, ObjectID } from '../graphql.schema';
 import { MovieGuard } from './movie.guard';
 import { MovieService } from './movie.service';
 import { CreateMovieDto, MovieDto } from './movie.entity';
-import { Logger, BunyanLogger } from 'common/log/logger.service';
 import { LoggingInterceptor } from 'common/interceptors/LoggingInterceptor';
 
 const pubSub = new PubSub();
@@ -14,12 +13,9 @@ const pubSub = new PubSub();
 @Resolver('Movie')
 export class MovieResolvers {
     private movieService: MovieService;
-    private log: BunyanLogger;
 
-    constructor(@Inject(MovieService) movieService: MovieService,
-        @Inject(Logger) logger: Logger) {
+    constructor(@Inject(MovieService) movieService: MovieService) {
         this.movieService = movieService;
-        this.log = logger.createLogger('Movie.Resolver');
     }
 
     @Query()
