@@ -18,21 +18,10 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
         outputAs: 'class',
       },
     }),
-    TypeOrmModule.forRoot({
-      type: 'mongodb',
-      host: '192.168.99.100',
-      port: 27017,
-      username: 'user',
-      password: 'password',
-      database: 'mongo',
-      logging: 'all',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
-    }),
     MovieModule,
     CommonModule,
   ],
   controllers: [],
-  providers: [{ provide: APP_INTERCEPTOR, useClass: LoggingInterceptor }],
+  providers: [{ provide: APP_INTERCEPTOR, useClass: LoggingInterceptor }]
 })
 export class AppModule { }

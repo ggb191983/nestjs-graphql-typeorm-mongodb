@@ -1,5 +1,4 @@
-import { Injectable, UseInterceptors } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable, Inject } from '@nestjs/common';
 import { Repository, ObjectID } from 'typeorm';
 import { Movie } from './movie.entity';
 import { CreateMovieInput } from '../graphql.schema';
@@ -9,7 +8,7 @@ import { IService } from 'common/services.interface';
 export class MovieService implements IService<Movie> {
 
     constructor(
-        @InjectRepository(Movie)
+        @Inject('MovieRepository')
         private readonly movieRepository: Repository<Movie>) { }
 
     async create(movie: CreateMovieInput): Promise<Movie> {
